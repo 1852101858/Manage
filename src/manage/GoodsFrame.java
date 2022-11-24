@@ -86,9 +86,9 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		User accout=new User();
 //		String a=accout.getAccout();
 //		String b="admin";
-		if (Objects.equals(a:accout.getAccout(), b:"admin")){
-			menuBar.add(editor);
-		}
+		//if (Objects.equals(a:accout.getAccout(), b:"admin")){
+		//	menuBar.add(editor);
+		//}
 
 
 		this.setJMenuBar(menuBar);
