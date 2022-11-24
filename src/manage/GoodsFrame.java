@@ -87,7 +87,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
 //		String a=accout.getAccout();
 //		String b="admin";
 		//if (Objects.equals(a:accout.getAccout(), b:"admin")){
-		//	menuBar.add(editor);
+		//11111	menuBar.add(editor);
 		//}
 
 
