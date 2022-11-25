@@ -63,12 +63,17 @@ public class MainFrame extends JFrame implements ActionListener {
 			String accout = jFieldAccout.getText().trim().toString(); 
 			String pass = jFieldpass.getText().trim().toString(); 
 			if (e.getActionCommand().equals("login")) { 
-				User user = userDao.getUserByAccout(accout); 
-				if (user != null) { 
+				User user = userDao.getUserByAccout(accout);
+				if (user != null) {
 					if (user.getPass().equals(pass)) {
-						this.dispose(); 
- 
-						new GoodsFrame().init(); 
+						this.dispose();
+						String a="admin";
+						if (accout.equals(a)){
+							new GoodsFrame().adminFrame();
+						}
+						else  {
+							new GoodsFrame().initFrame();
+						}
 					} else {
 						JOptionPane.showMessageDialog(null, "密码错误", "信息", JOptionPane.INFORMATION_MESSAGE);
 					}
