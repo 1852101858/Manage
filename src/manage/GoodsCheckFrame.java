@@ -101,7 +101,6 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(this, "商品编号不能为空");
 		} else if (goods != null) { 
 			try {
-
 				nameJTextField.setText(goods.getName()); 
 				locationJTextField.setText(goods.getLocation());
 				numJTextField.setText(goods.getNum() + ""); 
@@ -117,9 +116,6 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 
 	}
 
-
-
-	 
 	private void checkData() {
 		goodsIdText = idJTextField.getText().trim().toString();
 		goodsNameText = nameJTextField.getText().trim().toString();

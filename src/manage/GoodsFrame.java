@@ -21,7 +21,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
  
 	private JMenuBar menuBar;
  
-	private JMenuItem list,check,into,out,editor;
+	private JMenuItem list,check,updata,editor;
  
 	private Container container;
  
@@ -67,12 +67,12 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		check = new JMenuItem("查询");
 		check.addActionListener(this); 
 		check.setActionCommand("check");
-		into = new JMenuItem("出库");
-		into.addActionListener(this); 
-		into.setActionCommand("updata");
-		out = new JMenuItem("入库");
-		out.addActionListener(this); 
-		out.setActionCommand("updata");
+		updata = new JMenuItem("出入库");
+		updata.addActionListener(this);
+		updata.setActionCommand("updata");
+		//out = new JMenuItem("入库");
+		//out.addActionListener(this);
+		//out.setActionCommand("updata");
 		editor = new JMenuItem("商品编辑");
 		editor.addActionListener(this); 
 		editor.setActionCommand("ed");
@@ -80,13 +80,13 @@ public class GoodsFrame extends JFrame implements ActionListener {
  
 		menuBar.add(list);
 		menuBar.add(check);
-		menuBar.add(out);
-		menuBar.add(into);
+		//menuBar.add(out);
+		menuBar.add(updata);
 
 
 		User accout=new User();
-//		String a=accout.getAccout();
-//		String b="admin";
+		//String a=accout.getAccout();
+		//String b="admin";
 		//if (Objects.equals(a:accout.getAccout(), b:"admin")){
 		menuBar.add(editor);
 		//}
@@ -113,18 +113,15 @@ public class GoodsFrame extends JFrame implements ActionListener {
 			container.add(listPanel, "listPanel");
 			cardlayout.show(container, "listPanel");
 		} else if (e.getActionCommand().equals("updata")) {
-
 			goodschangeframe = new GoodsChangeFrame();
 			container.add(goodschangeframe, "crudBookPanel");
 			cardlayout.show(container, "crudBookPanel");
 		}else if (e.getActionCommand().equals("ed")) {
-
 				goodseditorframe = new GoodsEditorFrame();
 				container.add(goodseditorframe, "crudBookPanel");
 				cardlayout.show(container, "crudBookPanel");
 			}
 			else if (e.getActionCommand().equals("check")) {
-
 				goodscheckframe = new GoodsCheckFrame();
 				container.add(goodscheckframe, "crudBookPanel");
 				cardlayout.show(container, "crudBookPanel");

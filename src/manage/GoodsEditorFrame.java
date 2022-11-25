@@ -161,7 +161,6 @@ import dataEditor.*;
 					num1 =  Float.parseFloat(goodsNumText);
 					unit1=goodsUnitText;
 					price1 = Float.parseFloat(goodsPriceText);
-					
 					getGoods.updateGoods(new Goods(goodsIdText, name1,location1, num1,unit1, price1));
 					JOptionPane.showMessageDialog(this, "商品修改成功");
 				} catch (Exception e) {
@@ -170,7 +169,6 @@ import dataEditor.*;
 				}
 			}
 		}
-
 	}
 
 	 
