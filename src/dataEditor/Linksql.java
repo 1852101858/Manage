@@ -14,7 +14,7 @@ public class Linksql {
  
 	private static final String url = "jdbc:mysql://159.75.246.16:3306/goodsmanage";
  
-	private static final String driver = "com.mysql.jdbc.Driver";
+	private static final String driver = "com.mysql.cj.jdbc.Driver";
  
 	static {
 		try {

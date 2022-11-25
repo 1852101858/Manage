@@ -89,7 +89,7 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 		if (e.getActionCommand().equals("checkGoods")) {
 			findGoods();
 		} else if (e.getActionCommand().equals("checkData")) {
-				addGoods();
+			checkData();
 		}
 	}
 
@@ -120,7 +120,7 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 
 
 	 
-	private void addGoods() {
+	private void checkData() {
 		goodsIdText = idJTextField.getText().trim().toString();
 		goodsNameText = nameJTextField.getText().trim().toString();
 		goodsLocationText = locationJTextField.getText().trim().toString();
@@ -132,25 +132,11 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(this, "商品编号不能为空");
 		} else if (goodsNameText.equals("")) {
 			JOptionPane.showMessageDialog(this, "商品名称不能为空");
-		} else if (goodsNumText.equals("")) {
-			JOptionPane.showMessageDialog(this, "商品数量不能为空");
-		} else if (goodsPriceText.equals("")) {
-			JOptionPane.showMessageDialog(this, "商品价格不能为空");
-		} else {
- 
-			if (getGoods.getGoodsId(goodsIdText) != null) { 
-				JOptionPane.showMessageDialog(this, "商品编号重复");
-			} else {
+		}  else {
 				try {
-					name1 =  goodsNumText;
-					location1=  goodsLocationText;
-					num1 =  Float.parseFloat(goodsNumText);
-					unit1=  goodsUnitText;
-					price1 = Float.parseFloat(goodsPriceText);
-					tprice1 =Float.parseFloat(goodsTpriceText);
-					
-					getGoods.addGoods(new Goods(goodsIdText, name1,location1, num1,unit1, price1,tprice1));
-					JOptionPane.showMessageDialog(this, "商品增加成功");
+
+					//getGoods.addGoods(new Goods(goodsIdText, name1,location1, num1,unit1, price1));
+
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(this, "输入正确的商品数量和价格");
 					e.printStackTrace();
@@ -159,4 +145,4 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 		}
 
 	}
-}
+

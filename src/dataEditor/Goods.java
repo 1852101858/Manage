@@ -12,7 +12,7 @@ package dataEditor;
 		super();
 	}
 	
-	public Goods(String id, String name, String location, Float num, String unit ,float price,float tprice) {
+	public Goods(String id, String name, String location, Float num, String unit ,float price) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -20,7 +20,7 @@ package dataEditor;
 		this.num = num;
 		this.unit = unit;
 		this.price = price;
-		this.tprice = tprice;
+		this.tprice = price*num;
 	} 
 	
 		

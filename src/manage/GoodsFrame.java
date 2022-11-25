@@ -29,6 +29,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
  
 	private GoodsEditorFrame goodseditorframe;
 	private GoodsCheckFrame goodscheckframe;
+	private GoodsChangeFrame goodschangeframe;
 	private ListPanel listPanel;
  
  
@@ -74,7 +75,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		out.setActionCommand("updata");
 		editor = new JMenuItem("商品编辑");
 		editor.addActionListener(this); 
-		editor.setActionCommand("updata");
+		editor.setActionCommand("ed");
 
  
 		menuBar.add(list);
@@ -87,7 +88,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
 //		String a=accout.getAccout();
 //		String b="admin";
 		//if (Objects.equals(a:accout.getAccout(), b:"admin")){
-		//11111	menuBar.add(editor);
+		menuBar.add(editor);
 		//}
 
 
@@ -112,11 +113,16 @@ public class GoodsFrame extends JFrame implements ActionListener {
 			container.add(listPanel, "listPanel");
 			cardlayout.show(container, "listPanel");
 		} else if (e.getActionCommand().equals("updata")) {
- 
-			goodseditorframe = new GoodsEditorFrame();
-			container.add(goodseditorframe, "crudBookPanel");
+
+			goodschangeframe = new GoodsChangeFrame();
+			container.add(goodschangeframe, "crudBookPanel");
 			cardlayout.show(container, "crudBookPanel");
-		}
+		}else if (e.getActionCommand().equals("ed")) {
+
+				goodseditorframe = new GoodsEditorFrame();
+				container.add(goodseditorframe, "crudBookPanel");
+				cardlayout.show(container, "crudBookPanel");
+			}
 			else if (e.getActionCommand().equals("check")) {
 
 				goodscheckframe = new GoodsCheckFrame();

@@ -162,7 +162,7 @@ import dataEditor.*;
 					unit1=goodsUnitText;
 					price1 = Float.parseFloat(goodsPriceText);
 					
-					getGoods.updateGoods(new Goods(goodsIdText, name1,location1, num1,unit1, price1,tprice1));
+					getGoods.updateGoods(new Goods(goodsIdText, name1,location1, num1,unit1, price1));
 					JOptionPane.showMessageDialog(this, "商品修改成功");
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(this, "输入正确商品属性");
@@ -214,14 +214,12 @@ import dataEditor.*;
 				JOptionPane.showMessageDialog(this, "商品编号重复");
 			} else {
 				try {
-					name1 =  goodsNumText;
+					name1 =  goodsNameText;
 					location1=  goodsLocationText;
 					num1 =  Float.parseFloat(goodsNumText);
 					unit1=  goodsUnitText;
 					price1 = Float.parseFloat(goodsPriceText);
-					tprice1 =Float.parseFloat(goodsTpriceText);
-					
-					getGoods.addGoods(new Goods(goodsIdText, name1,location1, num1,unit1, price1,tprice1));
+					getGoods.addGoods(new Goods(goodsIdText, name1,location1, num1,unit1, price1));
 					JOptionPane.showMessageDialog(this, "商品增加成功");
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(this, "输入正确的商品数量和价格");

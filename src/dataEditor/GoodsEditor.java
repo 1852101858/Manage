@@ -16,13 +16,13 @@ public class GoodsEditor {
 	 
 	public Goods getGoodsId(String id) {
 		Connection connection = Linksql.getConnection();
-		String sql = "select id,name,location,num,unit,price,tprice from goods where id=?";
+		String sql = "select id,name,location,num,unit,price from goods where id=?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) { 
-				Goods goods = new Goods(rs.getString("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"),rs.getString("unit"), rs.getFloat("price"), rs.getFloat("tprice"));
+				Goods goods = new Goods(rs.getString("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"),rs.getString("unit"), rs.getFloat("price"));
 				Linksql.close(connection, ps); 
 				return goods;
 			}
@@ -54,12 +54,12 @@ public class GoodsEditor {
 	public ArrayList<Goods> getGoodsList() {
 		ArrayList<Goods> goodslist = new ArrayList<Goods>(); 
 		Connection connection = Linksql.getConnection(); 
-		String sql = "select id,name,location,num,unit,price,tprice from goods";
+		String sql = "select id,name,location,num,unit,price from goods";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) { 
-				Goods goods = new Goods(rs.getString("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"),rs.getString("unit"), rs.getFloat("price"), rs.getFloat("tprice"));
+				Goods goods = new Goods(rs.getString("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"),rs.getString("unit"), rs.getFloat("price"));
 				goodslist.add(goods);
 			}
 			Linksql.close(connection, ps); 
@@ -74,7 +74,7 @@ public class GoodsEditor {
 	public boolean addGoods(Goods goods) {
 		Connection connection = Linksql.getConnection(); 
  
-		String sql = "insert into goods(id,name,location,num,unit,price,tprice)values(?,?,?,?,?,?,?)";
+		String sql = "insert into goods(id,name,location,num,unit,price)values(?,?,?,?,?,?)";
 		try {
 			String id; 
 			String name; 
@@ -82,7 +82,7 @@ public class GoodsEditor {
 			float num; 
 			String unit; 
 			float price; 
-			float tprice; 
+			//float tprice;
 			
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -92,7 +92,7 @@ public class GoodsEditor {
 			ps.setFloat(4, goods.getNum());
 			ps.setString(5, goods.getUnit());
 			ps.setFloat(6, goods.getPrice());
-			ps.setFloat(7, goods.getTprice());
+		   // ps.setFloat(7, goods.getTprice());
 			
 			if (!ps.execute()) {
 				Linksql.close(connection, ps); 
@@ -107,7 +107,7 @@ public class GoodsEditor {
 	 
 	public boolean updateGoods(Goods goods) {
 		Connection connection = Linksql.getConnection(); 
-		String sql = "update goods set name=?,location=?,num=?,unit=?,price=?,tprice=? where id=?";
+		String sql = "update goods set name=?,location=?,num=?,unit=?,price=?  where id=?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, goods.getName());
@@ -115,8 +115,8 @@ public class GoodsEditor {
 			ps.setFloat(3, goods.getNum());
 			ps.setString(4, goods.getUnit());
 			ps.setFloat(5, goods.getPrice());
-			ps.setFloat(6, goods.getTprice());
-			ps.setString(7, goods.getId());
+			//ps.setFloat(6, goods.getTprice());
+			ps.setString(6, goods.getId());
 			if (!ps.execute()) {
 			
 				Linksql.close(connection, ps); 
