@@ -1,21 +1,25 @@
 package manage;
 
+import java.awt.*;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import dataEditor.*;
 
  public class ListPanel extends JPanel {
  	Vector rowData, columnNames;
 	JTable jt = null;
+
 	JScrollPane jsp = null;
 
- 
-	public ListPanel() {
+	 static DefaultTableModel tableModel;
+
+	 public ListPanel() {
 		ArrayList<Goods> allgoods = new GoodsEditor().getGoodsList();
 		columnNames = new Vector();
 		columnNames.add("商品编号");
@@ -35,14 +39,31 @@ import dataEditor.*;
 			hang.add(allgoods.get(i).getUnit());
 			hang.add(allgoods.get(i).getPrice());
 			hang.add(allgoods.get(i).getTprice());
- 
+			String a=allgoods.get(i).getId().toString();
 			rowData.add(hang);
+
 		}
- 
-		jt = new JTable(rowData, columnNames);
-		jsp = new JScrollPane(jt);
+
+
+		 tableModel = new DefaultTableModel(rowData,columnNames);
+		jt=new JTable(tableModel){
+			public boolean isCellEditable(int row, int column)
+			{
+				return false;}//表格不允许被编辑
+		};
+		jt.setRowSelectionAllowed(true);
+		 jt.addMouseListener(new MouseAdapter() {
+			 public void mouseClicked(MouseEvent e)
+			 {
+				 if (e.getClickCount() == 2) {
+					 int a = jt.getSelectedRow();
+					 JOptionPane.showMessageDialog(null, a, "信息", JOptionPane.INFORMATION_MESSAGE);
+				 }}});
+
+
+
+		 jsp = new JScrollPane(jt);
+		//jsp.setEnabled(false);
 		this.add(jsp);
-	}
-
-
-}
+	 }
+ }
