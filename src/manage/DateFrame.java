@@ -18,7 +18,6 @@ public class DateFrame extends JPanel{
         columnNames.add("商品名称");
         columnNames.add("商品产地");
         columnNames.add("商品数量");
-        columnNames.add("商品单位");
         columnNames.add("商品价格");
         columnNames.add("商品总价");
         rowData = new Vector();
@@ -28,7 +27,6 @@ public class DateFrame extends JPanel{
             hang.add(allgoods.get(i).getName());
             hang.add(allgoods.get(i).getLocation());
             hang.add(allgoods.get(i).getNum());
-            hang.add(allgoods.get(i).getUnit());
             hang.add(allgoods.get(i).getPrice());
             hang.add(allgoods.get(i).getTprice());
 

@@ -14,15 +14,15 @@ import javax.swing.JOptionPane;
  
 public class GoodsEditor {
 	 
-	public Goods getGoodsId(String id) {
+	public Goods getGoodsId(int id) {
 		Connection connection = Linksql.getConnection();
-		String sql = "select id,name,location,num,unit,price from goods where id=?";
+		String sql = "select id,name,location,num,price from goods where id=?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) { 
-				Goods goods = new Goods(rs.getString("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"),rs.getString("unit"), rs.getFloat("price"));
+				Goods goods = new Goods(rs.getInt("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"), rs.getFloat("price"));
 				Linksql.close(connection, ps); 
 				return goods;
 			}
@@ -32,7 +32,26 @@ public class GoodsEditor {
 		return null; 
 	}
 
-	 
+	public Goods getGoodsName(String Name) {
+		Connection connection = Linksql.getConnection();
+		String sql = "select id,name,location,num,price from goods where Name=?";
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, Name);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Goods goods = new Goods(rs.getInt("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"), rs.getFloat("price"));
+				Linksql.close(connection, ps);
+				return goods;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
 	public boolean deleteGoodsId(String id) {
 		Connection connection = Linksql.getConnection();
 		String sql = "delete from goods where id=?";
@@ -54,12 +73,12 @@ public class GoodsEditor {
 	public ArrayList<Goods> getGoodsList() {
 		ArrayList<Goods> goodslist = new ArrayList<Goods>(); 
 		Connection connection = Linksql.getConnection(); 
-		String sql = "select id,name,location,num,unit,price from goods";
+		String sql = "select id,name,location,num,price  from goods order by 1 asc";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) { 
-				Goods goods = new Goods(rs.getString("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"),rs.getString("unit"), rs.getFloat("price"));
+				Goods goods = new Goods(rs.getInt("id"), rs.getString("name"),rs.getString("location"), rs.getFloat("num"),rs.getFloat("price"));
 				goodslist.add(goods);
 			}
 			Linksql.close(connection, ps); 
@@ -74,25 +93,19 @@ public class GoodsEditor {
 	public boolean addGoods(Goods goods) {
 		Connection connection = Linksql.getConnection(); 
  
-		String sql = "insert into goods(id,name,location,num,unit,price)values(?,?,?,?,?,?)";
+		String sql = "insert into goods(id,name,location,num,price)values(?,?,?,?,?)";
 		try {
-			String id; 
+			int id;
 			String name; 
 			String location; 
-			float num; 
-			String unit; 
-			float price; 
-			//float tprice;
-			
-			
+			float num;
+			float price;
 			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1, goods.getId());
+			ps.setInt(1, goods.getId());
 			ps.setString(2, goods.getName());
 			ps.setString(3, goods.getLocation());
 			ps.setFloat(4, goods.getNum());
-			ps.setString(5, goods.getUnit());
-			ps.setFloat(6, goods.getPrice());
-		   // ps.setFloat(7, goods.getTprice());
+			ps.setFloat(5, goods.getPrice());
 			
 			if (!ps.execute()) {
 				Linksql.close(connection, ps); 
@@ -107,18 +120,15 @@ public class GoodsEditor {
 	 
 	public boolean updateGoods(Goods goods) {
 		Connection connection = Linksql.getConnection(); 
-		String sql = "update goods set name=?,location=?,num=?,unit=?,price=?  where id=?";
+		String sql = "update goods set name=?,location=?,num=?,price=?  where id=?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, goods.getName());
 			ps.setString(2, goods.getLocation());
 			ps.setFloat(3, goods.getNum());
-			ps.setString(4, goods.getUnit());
-			ps.setFloat(5, goods.getPrice());
-			//ps.setFloat(6, goods.getTprice());
-			ps.setString(6, goods.getId());
+			ps.setFloat(4, goods.getPrice());
+			ps.setInt(5, goods.getId());
 			if (!ps.execute()) {
-			
 				Linksql.close(connection, ps); 
 				return true;
 			}

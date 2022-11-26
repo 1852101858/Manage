@@ -40,7 +40,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		menuBar = new JMenuBar();
 		list= new JMenuItem("列表");
 		list.addActionListener(this); 
-		list.setActionCommand("listbook");
+		list.setActionCommand("list");
 		check = new JMenuItem("查询");
 		check.addActionListener(this); 
 		check.setActionCommand("check");
@@ -49,7 +49,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		updata.setActionCommand("updata");
 		editor = new JMenuItem("商品编辑");
 		editor.addActionListener(this); 
-		editor.setActionCommand("ed");
+		editor.setActionCommand("editor");
 		menuBar.add(list);
 		menuBar.add(check);
 		menuBar.add(updata);
@@ -60,21 +60,21 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		listPanel = new ListPanel();
 		container.add(listPanel, "listPanel");
 		cardlayout.show(container, "listPanel");
-		this.setTitle("商品系统-商品管理");
-		this.setSize(600, 400);
+		this.setTitle("库存管理系统");
+		this.setSize(600, 520);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int height = Toolkit.getDefaultToolkit().getScreenSize().height;
 		this.setLocation((width - 500) / 2, (height - 400) / 2);
 		this.setVisible(true);
-		this.setResizable(true);
+		this.setResizable(false);
 	}
 
 	public void adminFrame() {
 		menuBar = new JMenuBar();
 		list= new JMenuItem("列表");
 		list.addActionListener(this);
-		list.setActionCommand("listbook");
+		list.setActionCommand("list");
 		check = new JMenuItem("查询");
 		check.addActionListener(this);
 		check.setActionCommand("check");
@@ -83,7 +83,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		updata.setActionCommand("updata");
 		editor = new JMenuItem("商品编辑");
 		editor.addActionListener(this);
-		editor.setActionCommand("ed");
+		editor.setActionCommand("editor");
 		menuBar.add(list);
 		menuBar.add(check);
 		menuBar.add(updata);
@@ -95,8 +95,8 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		listPanel = new ListPanel();
 		container.add(listPanel, "listPanel");
 		cardlayout.show(container, "listPanel");
-		this.setTitle("商品系统-商品管理");
-		this.setSize(600, 400);
+		this.setTitle("库存管理系统");
+		this.setSize(600, 520);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int height = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -105,10 +105,9 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		this.setResizable(true);
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand().equals("listbook")) {
+			   if (e.getActionCommand().equals("list")) {
 			listPanel = new ListPanel();
 			container.add(listPanel, "listPanel");
 			cardlayout.show(container, "listPanel");
@@ -116,7 +115,7 @@ public class GoodsFrame extends JFrame implements ActionListener {
 			goodschangeframe = new GoodsChangeFrame();
 			container.add(goodschangeframe, "crudBookPanel");
 			cardlayout.show(container, "crudBookPanel");
-		}else if (e.getActionCommand().equals("ed")) {
+		}else if (e.getActionCommand().equals("editor")) {
 				goodseditorframe = new GoodsEditorFrame();
 				container.add(goodseditorframe, "crudBookPanel");
 				cardlayout.show(container, "crudBookPanel");

@@ -54,7 +54,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			int width = Toolkit.getDefaultToolkit().getScreenSize().width; 
 			int height = Toolkit.getDefaultToolkit().getScreenSize().height; 
 			this.setLocation((width - 500) / 2, (height - 400) / 2); 
-			this.setResizable(true); 
+			this.setResizable(false);
 			this.setVisible(true); 
 		}
 	
@@ -77,7 +77,6 @@ public class MainFrame extends JFrame implements ActionListener {
 					} else {
 						JOptionPane.showMessageDialog(null, "密码错误", "信息", JOptionPane.INFORMATION_MESSAGE);
 					}
-
 				} else { 
 					JOptionPane.showMessageDialog(null, "用户不存在", "信息", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -85,7 +84,6 @@ public class MainFrame extends JFrame implements ActionListener {
 				if (accout.equals("") || pass.equals("")) {
 					JOptionPane.showMessageDialog(null, "用户名和密码不能为空", "信息", JOptionPane.INFORMATION_MESSAGE);
 				} else {
- 
 					if (userDao.getUserByAccout(accout) != null) {
 						JOptionPane.showMessageDialog(null, "账户重复", "信息", JOptionPane.INFORMATION_MESSAGE);
 					} else {
@@ -93,16 +91,11 @@ public class MainFrame extends JFrame implements ActionListener {
 						boolean flag = userDao.insertUser(user);
 						if (flag) {
 							JOptionPane.showMessageDialog(null, "注册成功，请登陆", "信息", JOptionPane.INFORMATION_MESSAGE);
-						} else {
-							JOptionPane.showMessageDialog(null, "注册异常", "信息", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}}}}
 	
 	public static void main(String[] args) {
- 
 		MainFrame bf = new MainFrame();
 		bf.login();
 	}
-
-	
 }

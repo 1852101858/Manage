@@ -11,27 +11,18 @@ import java.awt.event.ActionListener;
  
 public class GoodsCheckFrame extends JPanel implements ActionListener {
  
-	private JButton checkBtn,checkdataBtn,addBtn;
+	private JButton checkBtn,checkdataBtn;
  
-	private JLabel idLabel,nameLabel,locationLabel,numLabel,unitLabel,priceLabel,tpriceLabel;
+	private JLabel idLabel,nameLabel,locationLabel,numLabel,priceLabel,tpriceLabel;
  
-	private JTextField idJTextField,nameJTextField,locationJTextField,numJTextField,unitJTextField,priceJTextField,tpriceJTextField;
+	private JTextField idJTextField,nameJTextField,locationJTextField,numJTextField,priceJTextField,tpriceJTextField;
  
 	private String goodsIdText;
 	private String goodsNameText;
 	private String goodsLocationText;
 	private String goodsNumText;
-	private String goodsUnitText;
 	private String goodsPriceText;
 	private String goodsTpriceText;
- 
-	private String name1;
-	private String location1;
-	private Float num1;
-	private String unit1;
-	private Float price1;
-	private Float tprice1;
- 
 	private GoodsEditor getGoods;
 
 	public GoodsCheckFrame() {
@@ -42,26 +33,19 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 		checkdataBtn = new JButton("查询出入库日期");
 		checkdataBtn.addActionListener(this);
 		checkdataBtn.setActionCommand("checkData");
-
- 
 		idLabel = new JLabel("商品编号");
 		nameLabel = new JLabel("商品名称");
 		locationLabel= new JLabel("商品产地");
 		numLabel = new JLabel("商品数量");
-		unitLabel = new JLabel("商品单位");
 		priceLabel = new JLabel("商品价格");
 		tpriceLabel = new JLabel("商品总价");
-		
- 
 		idJTextField = new JTextField(12);
 		nameJTextField = new JTextField(12);
 		locationJTextField = new JTextField(12);
 		numJTextField = new JTextField(12);
-		unitJTextField = new JTextField(12);
 		priceJTextField = new JTextField(12);
 		tpriceJTextField = new JTextField(12);
 		this.setLayout(new GridLayout(9, 2, 2, 2));
- 
 		this.add(idLabel);
 		this.add(idJTextField);
 		this.add(nameLabel);
@@ -70,18 +54,12 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 		this.add(locationJTextField);
 		this.add(numLabel);
 		this.add(numJTextField);
-		this.add(unitLabel);
-		this.add(unitJTextField);
 		this.add(priceLabel);
 		this.add(priceJTextField);
 		this.add(tpriceLabel);
 		this.add(tpriceJTextField);
-
-
 		this.add(checkBtn);
 		this.add(checkdataBtn);
-
-
 	}
 
 	@Override
@@ -95,33 +73,35 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 
 	 
 	private void findGoods() {
+		try {
 		goodsIdText = idJTextField.getText().trim().toString();
-		Goods goods = getGoods.getGoodsId(goodsIdText);
+		int id = Integer.parseInt(idJTextField.getText());
+		Goods goods = getGoods.getGoodsId(id);
 		if (goodsIdText.equals("")) {
-			JOptionPane.showMessageDialog(this, "商品编号不能为空");
-		} else if (goods != null) { 
-			try {
-				nameJTextField.setText(goods.getName()); 
+			JOptionPane.showMessageDialog(this, "商品名称不能为空");
+		} else if (goods != null) {
+				idJTextField.setText(goods.getId()+ "");
+				nameJTextField.setText(goods.getName());
 				locationJTextField.setText(goods.getLocation());
-				numJTextField.setText(goods.getNum() + ""); 
-				unitJTextField.setText(goods.getUnit());
+				numJTextField.setText(goods.getNum() + "");
 				priceJTextField.setText(goods.getPrice() + ""); 
 				tpriceJTextField.setText(goods.getTprice() + "");
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(this, "商品查询异常");
-			}
 		} else {
 			JOptionPane.showMessageDialog(this, "商品不存在");
 		}
 
+	}catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "输入正确商品属性");
+			e.printStackTrace();
+		}
 	}
 
 	private void checkData() {
+		try {
 		goodsIdText = idJTextField.getText().trim().toString();
 		goodsNameText = nameJTextField.getText().trim().toString();
 		goodsLocationText = locationJTextField.getText().trim().toString();
 		goodsNumText = numJTextField.getText().trim().toString();
-		goodsUnitText = unitJTextField.getText().trim().toString();
 		goodsPriceText = priceJTextField.getText().trim().toString();
 		goodsTpriceText = tpriceJTextField.getText().trim().toString();
 		if (goodsIdText.equals("")) {
@@ -129,16 +109,19 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 		} else if (goodsNameText.equals("")) {
 			JOptionPane.showMessageDialog(this, "商品名称不能为空");
 		}  else {
-				try {
 
-					//getGoods.addGoods(new Goods(goodsIdText, name1,location1, num1,unit1, price1));
 
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(this, "输入正确的商品数量和价格");
-					e.printStackTrace();
-				}
+
+
+
+
+
+
 			}
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "输入正确商品属性");
+			e.printStackTrace();
 		}
 
-	}
+	}}
 
