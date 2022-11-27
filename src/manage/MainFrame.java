@@ -16,12 +16,10 @@ import dataEditor.*;
 
 
 public class MainFrame extends JFrame implements ActionListener {
- 
 		private JLabel jLabelAccout, jlLabelpass; 
 		private JButton loginBtn, registBtn; 
 		private JTextField jFieldAccout, jFieldpass; 
-		private UserEditor userDao = new UserEditor(); 
- 
+		private UserEditor userDao = new UserEditor();
 	
 		public void login() {
 			FlowLayout f = new FlowLayout(); 
@@ -48,8 +46,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			setLayout(f); 
  
 			this.setTitle("商品系统-登陆"); 
-			this.setSize(300, 220); 
-			this.setIconImage((new ImageIcon("images/logo.jpg")).getImage()); 
+			this.setSize(300, 220);
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 			int width = Toolkit.getDefaultToolkit().getScreenSize().width; 
 			int height = Toolkit.getDefaultToolkit().getScreenSize().height; 

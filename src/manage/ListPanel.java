@@ -11,13 +11,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import dataEditor.*;
 
- public class ListPanel extends JPanel {
+import static manage.GoodsFrame.container;
+
+public class ListPanel extends JPanel {
  	Vector rowData, columnNames;
 	JTable jt = null;
-
 	JScrollPane jsp = null;
-
 	 static DefaultTableModel tableModel;
+	 private GoodsInFrame goodsinframe;
 
 	 public ListPanel() {
 		ArrayList<Goods> allgoods = new GoodsEditor().getGoodsList();
@@ -38,7 +39,6 @@ import dataEditor.*;
 			hang.add(allgoods.get(i).getPrice());
 			hang.add(allgoods.get(i).getTprice());
 			rowData.add(hang);
-
 		}
 
 
@@ -51,13 +51,21 @@ import dataEditor.*;
 		 jt.setRowSelectionAllowed(true);//允许选择行
 		 jt.setFont(new Font("Song", Font.CENTER_BASELINE, 15));
 		 jt.setRowHeight(30);
-
 		 jt.addMouseListener(new MouseAdapter() {
 			 public void mouseClicked(MouseEvent e)
 			 {
 				 if (e.getClickCount() == 2) {
 					 int a = jt.getSelectedRow();
-					 JOptionPane.showMessageDialog(null, a, "信息", JOptionPane.INFORMATION_MESSAGE);
+					int id = allgoods.get(a).getId();
+					 String name1 = allgoods.get(a).getName();
+					 String location1 = allgoods.get(a).getLocation();
+					 Float num1 = allgoods.get(a).getNum();
+					 Float price1 = allgoods.get(a).getPrice();
+					 String date=allgoods.get(a).getDate();
+					 GoodsEditor getGoods = null;
+					 goodsinframe = new GoodsInFrame(id,name1,location1,num1,price1,date);
+					 container.add(goodsinframe, "crudBookPanel");
+					 GoodsFrame.cardlayout.show(container, "crudBookPanel");
 				 }}});
 
 		 jsp = new JScrollPane(jt,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS ,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS  );
