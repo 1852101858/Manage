@@ -3,7 +3,9 @@ package manage;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,7 +26,7 @@ import dataEditor.*;
 	private String goodsPriceText;
 
 	private String name1;
-	private String location1;
+	private String location1,date;
 	private Float num1;
 	private Float price1;
 	private GoodsEditor getGoods;
@@ -125,12 +127,13 @@ import dataEditor.*;
 			if (getGoods.getGoodsId(id) == null) {
 				JOptionPane.showMessageDialog(this, "商品不存在");
 			} else {
-
 					name1 =  goodsNumText;
 					location1=goodsLocationText;
 					num1 =  Float.parseFloat(goodsNumText);
 					price1 = Float.parseFloat(goodsPriceText);
-					getGoods.updateGoods(new Goods(id, name1,location1, num1, price1));
+				Goods goods = getGoods.getGoodsId(id);
+				String date1 = goods.getDate();
+					getGoods.updateGoods(new Goods(id, name1,location1, num1, price1,date1));
 					JOptionPane.showMessageDialog(this, "商品修改成功");
 				}}} catch (Exception e) {
 					JOptionPane.showMessageDialog(this, "输入正确商品属性");
@@ -170,14 +173,15 @@ import dataEditor.*;
 				id = Integer.parseInt(idJTextField.getText());
 			     if (getGoods.getGoodsId(id) != null) {
 					JOptionPane.showMessageDialog(this, "商品编号重复");}
-				 else
+				 else{
 					 name1 = goodsNameText;
 					 location1 = goodsLocationText;
 					 num1 = Float.parseFloat(goodsNumText);
 					 price1 = Float.parseFloat(goodsPriceText);
-					 getGoods.addGoods(new Goods(id, name1, location1, num1, price1));
+					 date="";
+					 getGoods.addGoods(new Goods(id, name1, location1, num1, price1,date));
 					 JOptionPane.showMessageDialog(this, "商品增加成功");
-				 }
+				 }}
 		   else if (goodsIdText.equals("")) {//不输入id则自动分配
 			  ArrayList<Goods> allgoods = new GoodsEditor().getGoodsList();
 			  id =allgoods.size() + 1;
@@ -185,7 +189,8 @@ import dataEditor.*;
 						  location1 = goodsLocationText;
 						  num1 = Float.parseFloat(goodsNumText);
 						  price1 = Float.parseFloat(goodsPriceText);
-						  getGoods.addGoods(new Goods(id, name1, location1, num1, price1));
+						  date="";
+						  getGoods.addGoods(new Goods(id, name1, location1, num1, price1,date));
 						  JOptionPane.showMessageDialog(this, "商品增加成功");
 				  }}
 			  catch (Exception e) {

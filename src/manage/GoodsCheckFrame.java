@@ -45,7 +45,7 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 		numJTextField = new JTextField(12);
 		priceJTextField = new JTextField(12);
 		tpriceJTextField = new JTextField(12);
-		this.setLayout(new GridLayout(9, 2, 2, 2));
+		this.setLayout(new GridLayout(7, 2, 2, 2));
 		this.add(idLabel);
 		this.add(idJTextField);
 		this.add(nameLabel);
@@ -78,7 +78,7 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 		int id = Integer.parseInt(idJTextField.getText());
 		Goods goods = getGoods.getGoodsId(id);
 		if (goodsIdText.equals("")) {
-			JOptionPane.showMessageDialog(this, "商品名称不能为空");
+			JOptionPane.showMessageDialog(this, "商品编号不能为空");
 		} else if (goods != null) {
 				idJTextField.setText(goods.getId()+ "");
 				nameJTextField.setText(goods.getName());

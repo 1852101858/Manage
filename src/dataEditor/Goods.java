@@ -4,19 +4,21 @@ package dataEditor;
 	private String name; 
 	private String location; 
 	private float num;
-	private float price; 
+	private float price;
+	private String date;
 
 	public Goods() {
 		super();
 	}
 	
-	public Goods(int id, String name, String location, Float num,float price) {
+	public Goods(int id, String name, String location, Float num,float price,String date) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.location = location;
 		this.num = num;
 		this.price = price;
+		this.date=date;
 	}
 
 	public int getId() {
@@ -37,4 +39,8 @@ package dataEditor;
 	public float getTprice() {
 		return num*price;
 	}
-}
+
+	 public String getDate() {
+		 return date;
+	}
+ }

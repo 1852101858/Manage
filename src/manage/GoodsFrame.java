@@ -5,31 +5,23 @@ import java.awt.Container;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 import dataEditor.*;
 
  
  
 public class GoodsFrame extends JFrame implements ActionListener {
- 
 	private JMenuBar menuBar;
- 
-	private JMenuItem list,check,updata,editor;
- 
-	private Container container;
- 
-	private CardLayout cardlayout;
- 
+	private JMenuItem list,check,in,out,editor;
+	public static Container container;
+	public static CardLayout cardlayout;
 	private GoodsEditorFrame goodseditorframe;
 	private GoodsCheckFrame goodscheckframe;
-	private GoodsChangeFrame goodschangeframe;
+	private GoodsInNewFrame goodsinframe;
+	private GoodsOutFrame goodsoutframe;
 	private ListPanel listPanel;
  
  
@@ -44,15 +36,16 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		check = new JMenuItem("查询");
 		check.addActionListener(this); 
 		check.setActionCommand("check");
-		updata = new JMenuItem("出入库");
-		updata.addActionListener(this);
-		updata.setActionCommand("updata");
-		editor = new JMenuItem("商品编辑");
-		editor.addActionListener(this); 
-		editor.setActionCommand("editor");
+		in = new JMenuItem("入库新商品");
+		in.addActionListener(this);
+		in.setActionCommand("in");
+		out = new JMenuItem("出库");
+		out.addActionListener(this);
+		out.setActionCommand("out");
 		menuBar.add(list);
 		menuBar.add(check);
-		menuBar.add(updata);
+		menuBar.add(in);
+		menuBar.add(out);
 		this.setJMenuBar(menuBar);
  		cardlayout = new CardLayout();
 		container = getContentPane();
@@ -61,13 +54,13 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		container.add(listPanel, "listPanel");
 		cardlayout.show(container, "listPanel");
 		this.setTitle("库存管理系统");
-		this.setSize(600, 520);
+		this.setSize(500, 520);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-		this.setLocation((width - 500) / 2, (height - 400) / 2);
+		this.setLocation((width - 500) / 2, (height - 520) / 2);
 		this.setVisible(true);
-		this.setResizable(false);
+		this.setResizable(true);
 	}
 
 	public void adminFrame() {
@@ -78,15 +71,19 @@ public class GoodsFrame extends JFrame implements ActionListener {
 		check = new JMenuItem("查询");
 		check.addActionListener(this);
 		check.setActionCommand("check");
-		updata = new JMenuItem("出入库");
-		updata.addActionListener(this);
-		updata.setActionCommand("updata");
+		in = new JMenuItem("入库新商品");
+		in.addActionListener(this);
+		in.setActionCommand("in");
+		out = new JMenuItem("出库");
+		out.addActionListener(this);
+		out.setActionCommand("out");
 		editor = new JMenuItem("商品编辑");
 		editor.addActionListener(this);
 		editor.setActionCommand("editor");
 		menuBar.add(list);
 		menuBar.add(check);
-		menuBar.add(updata);
+		menuBar.add(in);
+		menuBar.add(out);
         menuBar.add(editor);
 		this.setJMenuBar(menuBar);
 		cardlayout = new CardLayout();
@@ -107,23 +104,26 @@ public class GoodsFrame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-			   if (e.getActionCommand().equals("list")) {
+		  if (e.getActionCommand().equals("list")) {
 			listPanel = new ListPanel();
 			container.add(listPanel, "listPanel");
 			cardlayout.show(container, "listPanel");
-		} else if (e.getActionCommand().equals("updata")) {
-			goodschangeframe = new GoodsChangeFrame();
-			container.add(goodschangeframe, "crudBookPanel");
-			cardlayout.show(container, "crudBookPanel");
+		}else if (e.getActionCommand().equals("in")) {
+			goodsinframe = new GoodsInNewFrame();
+			container.add(goodsinframe, "crudPanel");
+			cardlayout.show(container, "crudPanel");
+		}else if (e.getActionCommand().equals("out")) {
+				   goodsoutframe = new GoodsOutFrame();
+				   container.add(goodsoutframe, "crudPanel");
+				   cardlayout.show(container, "crudPanel");
 		}else if (e.getActionCommand().equals("editor")) {
 				goodseditorframe = new GoodsEditorFrame();
-				container.add(goodseditorframe, "crudBookPanel");
-				cardlayout.show(container, "crudBookPanel");
-			}
-			else if (e.getActionCommand().equals("check")) {
+				container.add(goodseditorframe, "crudPanel");
+				cardlayout.show(container, "crudPanel");
+		}else if (e.getActionCommand().equals("check")) {
 				goodscheckframe = new GoodsCheckFrame();
-				container.add(goodscheckframe, "crudBookPanel");
-				cardlayout.show(container, "crudBookPanel");
+				container.add(goodscheckframe, "crudPanel");
+				cardlayout.show(container, "crudPanel");
 			}
 	}
 }

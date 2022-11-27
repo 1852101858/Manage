@@ -1,7 +1,6 @@
 package manage;
 
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,12 +15,10 @@ import dataEditor.*;
 
 
 public class MainFrame extends JFrame implements ActionListener {
- 
 		private JLabel jLabelAccout, jlLabelpass; 
 		private JButton loginBtn, registBtn; 
 		private JTextField jFieldAccout, jFieldpass; 
-		private UserEditor userDao = new UserEditor(); 
- 
+		private UserEditor userDao = new UserEditor();
 	
 		public void login() {
 			FlowLayout f = new FlowLayout(); 
@@ -29,28 +26,32 @@ public class MainFrame extends JFrame implements ActionListener {
 			f.setHgap(30); 
 			f.setVgap(30); 
 			jLabelAccout = new JLabel("账  号");
+			jLabelAccout.setFont(new Font("Song", Font.CENTER_BASELINE, 15));
 			add(jLabelAccout);
-			jFieldAccout = new JTextField(12); 
+			jFieldAccout = new JTextField(12);
 			add(jFieldAccout);
 			jlLabelpass = new JLabel("密  码");
+			jlLabelpass.setFont(new Font("Song", Font.CENTER_BASELINE, 15));
 			add(jlLabelpass);
 			jFieldpass = new JTextField(12); 
 			add(jFieldpass);
-			loginBtn = new JButton("登陆"); 
+			loginBtn = new JButton("登陆");
+			loginBtn.setFont(new Font("Song", Font.CENTER_BASELINE, 15));
 			loginBtn.addActionListener(this); 
 			loginBtn.setActionCommand("login"); 
 			add(loginBtn);
 			registBtn = new JButton();
-			registBtn.setText("注册用户"); 
+			registBtn.setText("注册用户");
+			registBtn.setFont(new Font("Song", Font.CENTER_BASELINE, 15));
 			registBtn.addActionListener(this); 
 			registBtn.setActionCommand("regist"); 
 			add(registBtn);
 			setLayout(f); 
  
-			this.setTitle("商品系统-登陆"); 
-			this.setSize(300, 220); 
-			this.setIconImage((new ImageIcon("images/logo.jpg")).getImage()); 
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+			this.setTitle("登陆");
+			this.setSize(300, 220);
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 			int width = Toolkit.getDefaultToolkit().getScreenSize().width; 
 			int height = Toolkit.getDefaultToolkit().getScreenSize().height; 
 			this.setLocation((width - 500) / 2, (height - 400) / 2); 
