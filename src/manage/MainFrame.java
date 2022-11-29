@@ -49,7 +49,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			setLayout(f); 
  
 			this.setTitle("登陆");
-			this.setSize(300, 220);
+			this.setSize(300, 250);
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 			int width = Toolkit.getDefaultToolkit().getScreenSize().width; 

@@ -12,10 +12,11 @@ public class Linksql {
 	private static final String user = "su"; 
 	private static final String passwd = "135792468"; 
  
-	private static final String url = "jdbc:mysql://localhost:3306/goodsmanage";
+	//private static final String url = "jdbc:mysql://localhost:3306/goodsmanage";
+	private static final String url = "jdbc:mysql://159.75.246.16:3306/goodsmanage";
  
 	private static final String driver = "com.mysql.cj.jdbc.Driver";
- 
+
 	static {
 		try {
 			Class.forName(driver);

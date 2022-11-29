@@ -79,7 +79,7 @@ public class GoodsInNewFrame extends JPanel implements ActionListener{
                 price1 = Float.parseFloat(goodsPriceText);
                 Date datenow=new Date();
                 SimpleDateFormat dateFormat_min=new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-                String date1=dateFormat_min.format(datenow)+"~in"+num1+"/";
+                String date1=dateFormat_min.format(datenow)+"~in"+num1+"/～"+num1+"/";
                 getGoods.addGoods(new Goods(id, name1, location1, num1, price1,date1));
                 JOptionPane.showMessageDialog(this, "商品增加成功");
             }
@@ -92,7 +92,7 @@ public class GoodsInNewFrame extends JPanel implements ActionListener{
                 price1 = Float.parseFloat(goodsPriceText);
                 Date datenow=new Date();
                 SimpleDateFormat dateFormat_min=new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-                String date1=dateFormat_min.format(datenow)+"~in"+num1+"/";
+                String date1=dateFormat_min.format(datenow)+"~in"+num1+"/～"+num1+"/";
                 getGoods.addGoods(new Goods(id, name1, location1, num1, price1,date1));
                 JOptionPane.showMessageDialog(this, "商品增加成功");
             }}

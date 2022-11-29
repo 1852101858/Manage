@@ -80,7 +80,7 @@ public class GoodsOutFrame extends JPanel implements ActionListener{
                         date=goods.getDate();
                         Date datenow=new Date();
                         SimpleDateFormat dateFormat_min=new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-                        String d=dateFormat_min.format(datenow)+"~out"+a+"/";
+                        String d=dateFormat_min.format(datenow)+"~out"+a+"/～"+num1+"/";
                         String date1=date.concat(d);
 
                         getGoods.updateGoods(new Goods(id, name1,location1, num1, price1,date1));

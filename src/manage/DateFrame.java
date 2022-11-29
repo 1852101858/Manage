@@ -11,30 +11,38 @@ public class DateFrame extends JPanel{
     Vector rowData, columnNames;
     JTable jt = null;
     JScrollPane jsp = null;
-    public void DatePanel() {
-        ArrayList<Goods> allgoods = new GoodsEditor().getGoodsList();
+
+    public DateFrame(String date) {
+        String line=date;
+        String[] words = line.split("/");
         columnNames = new Vector();
-        columnNames.add("商品编号");
-        columnNames.add("商品名称");
-        columnNames.add("商品产地");
-        columnNames.add("商品数量");
-        columnNames.add("商品价格");
-        columnNames.add("商品总价");
+        columnNames.add("操作日期");
+        columnNames.add("操作类型");
+        columnNames.add("操作数量");
+        columnNames.add("剩余库存");
         rowData = new Vector();
-        for (int i = 0; i < allgoods.size(); i++) {
+        for (int i = 0; i < words.length; i+=4) {
+
             Vector hang = new Vector();
-            hang.add(allgoods.get(i).getId());
-            hang.add(allgoods.get(i).getName());
-            hang.add(allgoods.get(i).getLocation());
-            hang.add(allgoods.get(i).getNum());
-            hang.add(allgoods.get(i).getPrice());
-            hang.add(allgoods.get(i).getTprice());
-
+            hang.add(words[i]);
+            hang.add(words[i+1]);
+            hang.add(words[i+2]);
+            hang.add(words[i+3]);
             rowData.add(hang);
-        }
 
+        }
         jt = new JTable(rowData, columnNames);
         jsp = new JScrollPane(jt);
         this.add(jsp);
     }
-}
+
+
+
+
+
+
+
+
+    public void DatePanel(String date) {
+
+}}

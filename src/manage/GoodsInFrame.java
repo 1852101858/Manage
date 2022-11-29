@@ -71,7 +71,7 @@ public class GoodsInFrame extends JPanel implements ActionListener{
                 Goods goods = getGoods.getGoodsId(id1);
                 Date datenow=new Date();
                 SimpleDateFormat dateFormat_min=new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-                String d=dateFormat_min.format(datenow)+"~in"+num1+"/";
+                String d=dateFormat_min.format(datenow)+"~in"+num1+"/～"+num2+"/";
                 String date = goods.getDate();
                 String date1=date.concat(d);
                     getGoods.updateGoods(new Goods(id1, name1, location1, num2, price1,date1));

@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
- 
+import static manage.GoodsFrame.container;
+
+
 public class GoodsCheckFrame extends JPanel implements ActionListener {
  
 	private JButton checkBtn,checkdataBtn;
@@ -23,6 +25,8 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 	private String goodsNumText;
 	private String goodsPriceText;
 	private String goodsTpriceText;
+	public static Container container;
+	public static CardLayout cardlayout;
 	private GoodsEditor getGoods;
 
 	public GoodsCheckFrame() {
@@ -110,12 +114,11 @@ public class GoodsCheckFrame extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(this, "商品名称不能为空");
 		}  else {
 
-
-
-
-
-
-
+			Goods goods = getGoods.getGoodsId(Integer.parseInt(goodsIdText));
+			String date = goods.getDate();
+			DateFrame DateFrame = new DateFrame(date);
+			container.add(DateFrame, "DateFrame");
+			cardlayout.show(container, "DateFrame");
 
 			}
 		}catch (Exception e) {
